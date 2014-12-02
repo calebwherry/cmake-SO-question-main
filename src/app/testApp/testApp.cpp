@@ -15,7 +15,7 @@ int main()
   test::testLibPrint();
 
   // Function from external lib:
-  //other_test::testExtLibPrint();
+  other_test::testExtLibPrint();
 
   return 0;
 }
