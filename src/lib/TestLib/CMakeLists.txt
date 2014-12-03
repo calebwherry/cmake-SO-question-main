@@ -3,3 +3,6 @@ target_include_directories(TestLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 # Add dependencies:
 #target_link_libraries(TestLib LINK_PUBLIC ExtLib)
+
+# Install:
+install(TARGETS TestLib DESTINATION lib)
