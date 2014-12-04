@@ -1,3 +1,3 @@
-[submodule "ext/cmake-superprj-lib-test"]
-	path = ext/cmake-superprj-lib-test
-	url = https://github.com/calebwherry/cmake-superprj-lib-test
+[submodule "ext/cmake-SO-question-ExtLib"]
+	path = ext/cmake-SO-question-ExtLib
+	url = https://github.com/calebwherry/cmake-SO-question-ExtLib
