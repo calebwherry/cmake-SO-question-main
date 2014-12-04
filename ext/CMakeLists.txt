@@ -11,7 +11,7 @@ set(EXT_LIB_NAME "${EXT_LIB_NAME_SHARED}")
 # Add external project:
 ExternalProject_add(
   ExtLibBuild
-  SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/ext/cmake-superprj-lib-test"
+  SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/ext/cmake-SO-question-ExtLib"
   BUILD_IN_SOURCE 1
   CONFIGURE_COMMAND ""
   BUILD_COMMAND $(MAKE) ${EXT_LIB_NAME}
@@ -23,4 +23,4 @@ set_property(TARGET ExtLib PROPERTY IMPORTED_LOCATION "${CMAKE_BINARY_DIR}/src/l
 add_dependencies(ExtLib ExtLibBuild)
 
 # Add to include directories:
-include_directories("${CMAKE_CURRENT_SOURCE_DIR}/ext/cmake-superprj-lib-test")
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/ext/cmake-SO-question-ExtLib")
