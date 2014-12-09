@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.0)
 project(testing CXX)
 
-# Set for convienence in this example:
-set(CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_SOURCE_DIR}/build/install")
 
-# Set some RPATH properties:
+#
+# RPATH Settings:
+#
 SET(CMAKE_SKIP_BUILD_RPATH  FALSE)
 SET(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE) 
 SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
@@ -14,8 +14,32 @@ IF("${isSystemDir}" STREQUAL "-1")
    SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 ENDIF("${isSystemDir}" STREQUAL "-1")
 
-# Include external projects:
-include(ext/CMakeLists.txt) # Doesn't work with 'add_subdirectory'
 
-# Add src dir:
+#
+# Compile external project:
+#
+set(EXT_LIB_NAME "libExtLib.so")
+include(ExternalProject)
+ExternalProject_add(
+  ExtLibBuild
+  SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/cmake-SO-question-ExtLib"
+  BUILD_IN_SOURCE 1
+  CONFIGURE_COMMAND ""
+  BUILD_COMMAND $(MAKE)
+  INSTALL_COMMAND cp ${EXT_LIB_NAME} "${CMAKE_BINARY_DIR}/${EXT_LIB_NAME}"
+)
+
+
+#
+# Add external project as imported library target:
+#
+add_library(ExtLib SHARED IMPORTED)
+set_property(TARGET ExtLib PROPERTY IMPORTED_LOCATION "${CMAKE_BINARY_DIR}/${EXT_LIB_NAME}")
+add_dependencies(ExtLib ExtLibBuild)
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/cmake-SO-question-ExtLib")
+
+
+#
+# Add sub for all src:
+#
 add_subdirectory(src)
