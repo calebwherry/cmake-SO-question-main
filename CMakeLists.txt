@@ -35,6 +35,7 @@ ExternalProject_add(
 #
 add_library(ExtLib SHARED IMPORTED)
 set_property(TARGET ExtLib PROPERTY IMPORTED_LOCATION "${CMAKE_BINARY_DIR}/${EXT_LIB_NAME}")
+#set_property(TARGET ExtLib PROPERTY IMPORTED_NO_SONAME 1) # CMake side fix for problem
 add_dependencies(ExtLib ExtLibBuild)
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/cmake-SO-question-ExtLib")
 
